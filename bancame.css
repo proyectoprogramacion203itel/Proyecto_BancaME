@@ -1,16 +1,21 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    color: #333333;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Barra de navegación */
+body {
+    background-color: #f4f6f9;
+    color: #333;
+}
+
 .navbar {
-    background-color: #0284c7; /* Azul */
+    background-color: #0088cc;
     padding: 15px 30px;
-    border-bottom: 3px solid #16a34a;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -19,155 +24,101 @@ body {
 }
 
 .logo .banca {
-    color: #ffffff; /* Blanco para 'Banca' */
+    color: #ffffff;
 }
 
 .logo .me {
-    color: #22c55e; /* Verde para 'ME' */
+    color: #00e676;
 }
 
-/* Contenedor principal */
 .main-container {
-    max-width: 400px;
-    margin: 50px auto;
+    max-width: 420px;
+    margin: 60px auto;
     padding: 30px;
     background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #0284c7;
+h2 {
     text-align: center;
+    color: #0088cc;
+    margin-bottom: 20px;
 }
 
-/* Formularios */
-.auth-form {
+form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.input-group label {
+label {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 600;
     font-size: 14px;
-    font-weight: bold;
-    color: #374151;
+    color: #444;
 }
 
-.input-group input {
-    padding: 10px;
-    border: 1px solid #cbd5e1;
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
-    font-family: Arial, sans-serif;
-}
-
-.input-group input:focus {
-    border-color: #0284c7;
     outline: none;
+    transition: border-color 0.2s;
 }
 
-/* Botones */
-.btn-primary {
-    background-color: #22c55e; /* Verde */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #0088cc;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #00e676;
     color: #ffffff;
     border: none;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: bold;
     border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background-color 0.2s;
 }
 
-.btn-primary:hover {
-    background-color: #16a34a;
+button:hover {
+    background-color: #00c853;
 }
 
-.form-switch {
+p {
     text-align: center;
-    font-size: 13px;
     margin-top: 15px;
+    font-size: 14px;
 }
 
-.form-switch a {
-    color: #0284c7;
+a {
+    color: #0088cc;
     text-decoration: none;
+    font-weight: 600;
 }
 
-.form-switch a:hover {
+a:hover {
     text-decoration: underline;
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* Panel del banco */
-.bank-dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.bank-dashboard h2 {
-    font-size: 18px;
-    color: #0284c7;
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.account-box {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    border-radius: 4px;
-}
-
-.account-box p {
-    margin: 8px 0;
-    font-size: 14px;
-}
-
-.dashboard-actions {
+.actions {
     display: flex;
     gap: 10px;
+    margin-top: 15px;
 }
 
-.action-btn {
+.actions button {
     flex: 1;
-    background-color: #0284c7;
-    color: #ffffff;
-    border: none;
-    padding: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
+    background-color: #0088cc;
 }
 
-.action-btn:hover {
-    background-color: #0369a1;
-}
-
-.btn-secondary {
-    background-color: #ef4444;
-    color: #ffffff;
-    border: none;
-    padding: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.btn-secondary:hover {
-    background-color: #dc2626;
+.actions button:hover {
+    background-color: #006699;
 }
