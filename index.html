@@ -1,11 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BancaME - Banca Digital</title>
-    <!-- Enlace directo al CSS -->
-    <link rel="stylesheet" href="bancame.css">
+    <link rel="stylesheet" href="{% static 'bancame.css' %}">
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -65,7 +65,7 @@
 
     </div>
 
-    <!-- Enlace directo al JavaScript -->
-    <script src="script.js"></script>
+    <!-- Enlazamos el script con la etiqueta static de Django -->
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
