@@ -55,17 +55,17 @@
             <p><strong>Saldo Disponible:</strong> $ 1,250,450.00 ARS</p>
             
             <div class="actions">
-                <button type="button">Transferir</button>
-                <button type="button">Servicios</button>
-                <button type="button">Tarjetas</button>
+                <button type="button" id="btn-transferir">Transferir</button>
+                <button type="button" id="btn-servicios">Servicios</button>
+                <button type="button" id="btn-tarjetas">Tarjetas</button>
             </div>
             <br>
-            <button type="button" id="btn-logout" style="background-color: #d9534f; color: white;">Cerrar Sesión</button>
+            <button type="button" id="btn-logout" style="background-color: #d9534f; color: white; width: 100%;">Cerrar Sesión</button>
         </div>
 
     </div>
 
-    <!-- Enlazamos el script con la etiqueta static de Django -->
+    <!-- Enlazamos el archivo de JavaScript -->
     <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
