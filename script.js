@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Registro
+    // Proceso de Registro (API Django)
     const formRegister = document.getElementById('form-register');
     if (formRegister) {
         formRegister.addEventListener('submit', async (e) => {
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     formRegister.reset();
                 }
             } catch (error) {
-                alert('Error de conexión.');
+                alert('Error de conexión con el servidor.');
             }
         });
     }
 
-    // Login
+    // Proceso de Login (API Django)
     const formLogin = document.getElementById('form-login');
     if (formLogin) {
         formLogin.addEventListener('submit', async (e) => {
@@ -77,12 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(data.message || 'Credenciales incorrectas');
                 }
             } catch (error) {
-                alert('Error de conexión.');
+                alert('Error de conexión con el servidor.');
             }
         });
     }
 
-    // --- INTERACTIVIDAD Y MOVIMIENTOS DINÁMICOS ---
+    // --- INTERACTIVIDAD Y FUNCIONALIDADES DEL DASHBOARD ---
     const dynamicPanel = document.getElementById('dynamic-panel');
     const saldoMontoEl = document.getElementById('saldo-monto');
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         list.prepend(item);
     }
 
-    // Botón Transferir
+    // 1. Botón Transferir
     document.getElementById('btn-transferir').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Botón Servicios
+    // 2. Botón Servicios
     document.getElementById('btn-servicios').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
@@ -197,21 +197,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Botón Tarjetas
+    // 3. Botón Tarjetas
     document.getElementById('btn-tarjetas').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
             <h4>Mis Tarjetas Asociadas</h4>
             <div class="card-item">
                 <span>💳 <strong>Débito Visa:</strong> **** 4589</span>
-                <span class="status-active">Activa</span>
+                <span style="color: #059669; font-weight:600; font-size:11px;">Activa</span>
             </div>
             <div class="card-item">
                 <span>💳 <strong>Crédito Mastercard:</strong> **** 8812</span>
-                <span class="status-active">Activa</span>
+                <span style="color: #059669; font-weight:600; font-size:11px;">Activa</span>
             </div>
             <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
         `;
+
+        document.getElementById('btn-cerrar-panel').addEventListener('click', () => {
+            dynamicPanel.style.display = 'none';
+        });
+    });
+
+    // 4. Botón Plazo Fijo (NUEVO)
+    document.getElementById('btn-plazo-fijo').addEventListener('click', () => {
+        dynamicPanel.style.display = 'block';
+        dynamicPanel.innerHTML = `
+            <h4>Simulador de Plazo Fijo (30 días)</h4>
+            <form id="form-plazo">
+                <div class="input-group">
+                    <label>Monto a invertir (ARS):</label>
+                    <input type="number" id="pf-monto" placeholder="0.00" min="1000" required>
+                </div>
+                <p style="font-size: 12px; color: #64748b; margin-bottom: 10px;">Tasa Nominal Anual (TNA): <strong>42%</strong></p>
+                <button type="submit" class="btn-primary">Constituir Plazo Fijo</button>
+                <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cancelar</button>
+            </form>
+        `;
+
+        document.getElementById('form-plazo').addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            const monto = parseFloat(document.getElementById('pf-monto').value);
+
+            if (monto > saldoActual) {
+                alert('No tienes saldo suficiente para esta inversión.');
+                return;
+            }
+
+            const interesEstimado = (monto * 0.42 * 30) / 365;
+            saldoActual -= monto;
+            actualizarSaldoUI();
+            agregarMovimiento('Constitución Plazo Fijo', monto, false);
+            alert(`¡Plazo Fijo constituido con éxito!\nInvertiste $${monto.toLocaleString('es-AR')} a 30 días.\nInterés estimado a cobrar: +$${interesEstimado.toFixed(2)}.`);
+            dynamicPanel.style.display = 'none';
+        });
+
+        document.getElementById('btn-cerrar-panel').addEventListener('click', () => {
+            dynamicPanel.style.display = 'none';
+        });
+    });
+
+    // 5. Botón Conversor USD (NUEVO)
+    document.getElementById('btn-conversor').addEventListener('click', () => {
+        dynamicPanel.style.display = 'block';
+        dynamicPanel.innerHTML = `
+            <h4>Conversor de Divisas (ARS a USD)</h4>
+            <div class="input-group">
+                <label>Monto en Pesos (ARS):</label>
+                <input type="number" id="conv-ars" placeholder="Ej. 115000">
+            </div>
+            <p id="resultado-conversor" style="font-size: 14px; font-weight: 700; color: #0f172a; margin: 10px 0; text-align: center;">Equivalente: $0.00 USD</p>
+            <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
+        `;
+
+        const cotizacionDolar = 1150.00; // Cotización simulada
+        document.getElementById('conv-ars').addEventListener('input', (e) => {
+            const ars = parseFloat(e.target.value) || 0;
+            const usd = ars / cotizacionDolar;
+            document.getElementById('resultado-conversor').textContent = `Equivalente: $${usd.toFixed(2)} USD (Ref: $${cotizacionDolar})`;
+        });
 
         document.getElementById('btn-cerrar-panel').addEventListener('click', () => {
             dynamicPanel.style.display = 'none';

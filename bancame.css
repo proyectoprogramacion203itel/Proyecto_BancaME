@@ -457,3 +457,61 @@ input:focus {
     margin-bottom: 14px;
     animation: fadeIn 0.2s ease-in-out;
 }
+
+.service-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.btn-pay-small {
+    background: var(--accent);
+    color: #064e3b;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-pay-small:hover {
+    background: var(--accent-hover);
+}
+
+.btn-secondary {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #e2e8f0;
+    color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+.card-item {
+    background: white;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
