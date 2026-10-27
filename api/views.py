@@ -1,3 +1,8 @@
+from django.shortcuts import render
+
+# Vista para cargar la página principal
+def home(request):
+    return render(request, 'index.html')
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password, check_password

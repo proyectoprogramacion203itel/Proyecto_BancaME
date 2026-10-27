@@ -15,8 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from api.views import home  # <-- Importamos la vista
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name='home'),  # <-- Ruta para cargar el index.html en la raíz
+    path('api/', include('api.urls')),
 ]
