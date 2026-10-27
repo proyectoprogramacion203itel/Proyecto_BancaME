@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BancaME - Banca Digital</title>
-    <link rel="stylesheet" href="{% static 'bancame.css' %}"></head>
+    <link rel="stylesheet" href="{% static 'bancame.css' %}">
+</head>
 <body>
     <!-- Barra de navegación -->
     <header class="navbar">
@@ -14,54 +15,57 @@
         </div>
     </header>
 
-    <!-- Contenido principal -->
-    <main class="main-container">
-        <h1 id="header-title">Iniciar Sesión</h1>
-
-        <!-- Formulario de Login -->
-        <form id="login-form" class="auth-form">
-            <div class="input-group">
-                <label for="login-user">Usuario</label>
-                <input type="text" id="login-user" name="usuario" required>
-            </div>
-            <div class="input-group">
-                <label for="login-pass">Contraseña</label>
-                <input type="password" id="login-pass" name="password" required>
-            </div>
-            <button type="submit" class="btn-primary">Entrar</button>
-            <p class="form-switch">¿No tienes cuenta? <a href="#" id="show-register">Regístrate aquí</a></p>
-        </form>
-
-        <!-- Formulario de Registro -->
-        <form id="register-form" class="auth-form hidden">
-            <div class="input-group">
-                <label for="reg-user">Nuevo Usuario</label>
-                <input type="text" id="reg-user" name="usuario" required>
-            </div>
-            <div class="input-group">
-                <label for="reg-pass">Contraseña</label>
-                <input type="password" id="reg-pass" name="password" required>
-            </div>
-            <button type="submit" class="btn-primary">Registrarse</button>
-            <p class="form-switch">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
-        </form>
-
-        <!-- Panel de la Cuenta Bancaria (Dashboard con Fondos) -->
-        <div id="bank-dashboard" class="bank-dashboard hidden">
-            <h2>Bienvenido a tu cuenta</h2>
-            <div class="account-box">
-                <p><strong>Cuenta Corriente:</strong> ES91 2100 0456 7812 3456 7890</p>
-                <p><strong>Saldo Disponible:</strong> <span id="account-balance">$ 1,250,450.00 ARS</span></p>
-            </div>
-            <div class="dashboard-actions">
-                <button class="action-btn">Transferir</button>
-                <button class="action-btn">Servicios</button>
-                <button class="action-btn">Tarjetas</button>
-            </div>
-            <button id="btn-logout" class="btn-secondary">Cerrar Sesión</button>
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        
+        <!-- Sección de Login -->
+        <div id="login-section">
+            <h2>Iniciar Sesión</h2>
+            <form id="form-login">
+                <label for="usuario-login">Usuario</label>
+                <input type="text" id="usuario-login" required>
+                
+                <label for="password-login">Contraseña</label>
+                <input type="password" id="password-login" required>
+                
+                <button type="submit">Entrar</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="#" id="show-register">Regístrate aquí</a></p>
         </div>
-    </main>
 
-    <script src="script.js"></script>
+        <!-- Sección de Registro (Oculta por defecto) -->
+        <div id="register-section" style="display: none;">
+            <h2>Registro</h2>
+            <form id="form-register">
+                <label for="usuario-reg">Nuevo Usuario</label>
+                <input type="text" id="usuario-reg" required>
+                
+                <label for="password-reg">Contraseña</label>
+                <input type="password" id="password-reg" required>
+                
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
+        </div>
+
+        <!-- Sección de Dashboard / Cuenta (Oculta hasta iniciar sesión) -->
+        <div id="dashboard-section" style="display: none;">
+            <h2>Bienvenido a tu cuenta</h2>
+            <p><strong>Cuenta Corriente:</strong> ES91 2100 0456 7812 3456 7890</p>
+            <p><strong>Saldo Disponible:</strong> $ 1,250,450.00 ARS</p>
+            
+            <div class="actions">
+                <button type="button">Transferir</button>
+                <button type="button">Servicios</button>
+                <button type="button">Tarjetas</button>
+            </div>
+            <br>
+            <button type="button" id="btn-logout" style="background-color: #d9534f; color: white;">Cerrar Sesión</button>
+        </div>
+
+    </div>
+
+    <!-- Enlazamos el archivo de JavaScript -->
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

@@ -1,90 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const showRegisterLink = document.getElementById('show-register');
-    const showLoginLink = document.getElementById('show-login');
-    const headerTitle = document.getElementById('header-title');
-    const bankDashboard = document.getElementById('bank-dashboard');
-    const btnLogout = document.getElementById('btn-logout');
+    const loginSection = document.getElementById('login-section');
+    const registerSection = document.getElementById('register-section');
+    const dashboardSection = document.getElementById('dashboard-section');
 
-    showRegisterLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-        headerTitle.textContent = 'Crear cuenta BancaME';
-    });
+    const showRegister = document.getElementById('show-register');
+    const showLogin = document.getElementById('show-login');
 
-    showLoginLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        registerForm.classList.add('hidden');
-        loginForm.classList.remove('hidden');
-        headerTitle.textContent = 'Iniciar Sesión';
-    });
+    // Alternar vistas entre login y registro
+    if (showRegister && showLogin) {
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginSection.style.display = 'none';
+            registerSection.style.display = 'block';
+        });
 
-    // Petición de Registro a la API de Django
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const usuario = document.getElementById('reg-user').value;
-        const password = document.getElementById('reg-pass').value;
-
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/register/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ usuario, password })
-            });
-            const data = await response.json();
-
-            if (data.success) {
-                alert('¡Usuario registrado con éxito!');
-                registerForm.reset();
-                registerForm.classList.add('hidden');
-                loginForm.classList.remove('hidden');
-                headerTitle.textContent = 'Iniciar Sesión';
-            } else {
-                alert('Error: ' + data.message);
-            }
-        } catch (error) {
-            alert('Error de conexión con el servidor de Django.');
-        }
-    });
-
-    // Petición de Login a la API de Django
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const usuario = document.getElementById('login-user').value;
-        const password = document.getElementById('login-pass').value;
-
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/login/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ usuario, password })
-            });
-            const data = await response.json();
-
-            if (data.success) {
-                mostrarBanco();
-            } else {
-                alert('Usuario o contraseña incorrectos.');
-            }
-        } catch (error) {
-            alert('Error de conexión con el servidor de Django.');
-        }
-    });
-
-    function mostrarBanco() {
-        loginForm.classList.add('hidden');
-        registerForm.classList.add('hidden');
-        headerTitle.classList.add('hidden');
-        bankDashboard.classList.remove('hidden');
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerSection.style.display = 'none';
+            loginSection.style.display = 'block';
+        });
     }
 
-    btnLogout.addEventListener('click', () => {
-        bankDashboard.classList.add('hidden');
-        headerTitle.classList.remove('hidden');
-        loginForm.classList.remove('hidden');
-        loginForm.reset();
-        headerTitle.textContent = 'Iniciar Sesión';
-    });
+    // Manejar Registro
+    const formRegister = document.getElementById('form-register');
+    if (formRegister) {
+        formRegister.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario-reg').value;
+            const password = document.getElementById('password-reg').value;
+
+            try {
+                const response = await fetch('/api/register/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usuario, password })
+                });
+                const data = await response.json();
+                alert(data.message);
+                if (data.success) {
+                    registerSection.style.display = 'none';
+                    loginSection.style.display = 'block';
+                }
+            } catch (error) {
+                alert('Error de conexión con el servidor.');
+            }
+        });
+    }
+
+    // Manejar Login
+    const formLogin = document.getElementById('form-login');
+    if (formLogin) {
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario-login').value;
+            const password = document.getElementById('password-login').value;
+
+            try {
+                const response = await fetch('/api/login/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usuario, password })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('¡Inicio de sesión exitoso!');
+                    loginSection.style.display = 'none';
+                    dashboardSection.style.display = 'block';
+                } else {
+                    alert(data.message || 'Credenciales incorrectas');
+                }
+            } catch (error) {
+                alert('Error de conexión con el servidor.');
+            }
+        });
+    }
+
+    // Cerrar Sesión
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            dashboardSection.style.display = 'none';
+            loginSection.style.display = 'block';
+            document.getElementById('form-login').reset();
+        });
+    }
 });
