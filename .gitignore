@@ -1,0 +1,9 @@
+# Archivos de Python y Django
+__pycache__/
+*.pyc
+db.sqlite3
+venv/
+env/
+
+# Configuración de VS Code
+.vscode/

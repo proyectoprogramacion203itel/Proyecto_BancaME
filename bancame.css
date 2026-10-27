@@ -1,0 +1,173 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #0284c7; /* Azul */
+    padding: 15px 30px;
+    border-bottom: 3px solid #16a34a;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo .banca {
+    color: #ffffff; /* Blanco para 'Banca' */
+}
+
+.logo .me {
+    color: #22c55e; /* Verde para 'ME' */
+}
+
+/* Contenedor principal */
+.main-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #0284c7;
+    text-align: center;
+}
+
+/* Formularios */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.input-group input:focus {
+    border-color: #0284c7;
+    outline: none;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #22c55e; /* Verde */
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #16a34a;
+}
+
+.form-switch {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.form-switch a {
+    color: #0284c7;
+    text-decoration: none;
+}
+
+.form-switch a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Panel del banco */
+.bank-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bank-dashboard h2 {
+    font-size: 18px;
+    color: #0284c7;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.account-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.account-box p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    flex: 1;
+    background-color: #0284c7;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.action-btn:hover {
+    background-color: #0369a1;
+}
+
+.btn-secondary {
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #dc2626;
+}
