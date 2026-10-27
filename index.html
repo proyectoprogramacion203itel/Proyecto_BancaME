@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BancaME - Banca Digital</title>
+    <title>BancaME — Tu dinero, a tu manera</title>
     <link rel="stylesheet" href="{% static 'bancame.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -13,63 +16,91 @@
         <div class="logo">
             <span class="banca">Banca</span><span class="me">ME</span>
         </div>
+        <div class="nav-badge">Banca Digital</div>
     </header>
 
     <!-- Contenedor principal -->
-    <div class="main-container">
+    <main class="main-wrapper">
         
         <!-- Sección de Login -->
-        <div id="login-section">
-            <h2>Iniciar Sesión</h2>
+        <section id="login-section" class="card-box">
+            <div class="card-header-text">
+                <h2>¡Hola de nuevo!</h2>
+                <p class="subtitle">Ingresa a tu cuenta para gestionar tus finanzas</p>
+            </div>
             <form id="form-login">
-                <label for="usuario-login">Usuario</label>
-                <input type="text" id="usuario-login" required>
+                <div class="input-group">
+                    <label for="usuario-login">Usuario</label>
+                    <input type="text" id="usuario-login" placeholder="Tu nombre de usuario" required autocomplete="username">
+                </div>
                 
-                <label for="password-login">Contraseña</label>
-                <input type="password" id="password-login" required>
+                <div class="input-group">
+                    <label for="password-login">Contraseña</label>
+                    <input type="password" id="password-login" placeholder="••••••••" required autocomplete="current-password">
+                </div>
                 
-                <button type="submit">Entrar</button>
+                <button type="submit" class="btn-primary">Ingresar</button>
             </form>
-            <p>¿No tienes cuenta? <a href="#" id="show-register">Regístrate aquí</a></p>
-        </div>
+            <p class="footer-link">¿No tienes cuenta? <a href="#" id="show-register">Regístrate gratis</a></p>
+        </section>
 
         <!-- Sección de Registro (Oculta por defecto) -->
-        <div id="register-section" style="display: none;">
-            <h2>Registro</h2>
+        <section id="register-section" class="card-box" style="display: none;">
+            <div class="card-header-text">
+                <h2>Crea tu cuenta</h2>
+                <p class="subtitle">Únete a BancaME en segundos</p>
+            </div>
             <form id="form-register">
-                <label for="usuario-reg">Nuevo Usuario</label>
-                <input type="text" id="usuario-reg" required>
+                <div class="input-group">
+                    <label for="usuario-reg">Nombre de Usuario</label>
+                    <input type="text" id="usuario-reg" placeholder="Elige un usuario único" required>
+                </div>
                 
-                <label for="password-reg">Contraseña</label>
-                <input type="password" id="password-reg" required>
+                <div class="input-group">
+                    <label for="password-reg">Contraseña</label>
+                    <input type="password" id="password-reg" placeholder="Mínimo 6 caracteres" required>
+                </div>
                 
-                <button type="submit">Registrarse</button>
+                <button type="submit" class="btn-primary">Crear Cuenta</button>
             </form>
-            <p>¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
-        </div>
+            <p class="footer-link">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
+        </section>
 
         <!-- Sección de Dashboard / Cuenta (Oculta hasta iniciar sesión) -->
-        <div id="dashboard-section" style="display: none;">
-            <h2>Bienvenido a tu cuenta</h2>
-            <p><strong>Cuenta Corriente:</strong> ES91 2100 0456 7812 3456 7890</p>
-            <p class="saldo-box"><strong>Saldo Disponible:</strong> $ <span id="saldo-monto">1,250,450.00</span> ARS</p>
+        <section id="dashboard-section" class="card-box dashboard-card" style="display: none;">
+            <div class="dash-top">
+                <div>
+                    <span class="account-type">Cuenta Corriente en ARS</span>
+                    <h3>Mi Dinero</h3>
+                </div>
+                <div class="secure-badge">🔒 Seguro</div>
+            </div>
+
+            <div class="balance-card">
+                <span class="balance-label">Saldo Disponible</span>
+                <div class="balance-amount">$ <span id="saldo-monto">1,250,450.00</span></div>
+                <div class="account-number">CBU: ES91 2100 0456 7812 3456 7890</div>
+            </div>
             
-            <div class="actions">
-                <button type="button" id="btn-transferir">Transferir</button>
-                <button type="button" id="btn-servicios">Servicios</button>
-                <button type="button" id="btn-tarjetas">Tarjetas</button>
+            <div class="actions-grid">
+                <button type="button" class="action-btn" id="btn-transferir">
+                    <span class="icon">↗</span> Transferir
+                </button>
+                <button type="button" class="action-btn" id="btn-servicios">
+                    <span class="icon">⚡</span> Servicios
+                </button>
+                <button type="button" class="action-btn" id="btn-tarjetas">
+                    <span class="icon">💳</span> Tarjetas
+                </button>
             </div>
 
-            <!-- Contenedor interno para mostrar operaciones dentro de la página -->
-            <div id="dynamic-panel" class="dynamic-panel" style="display: none;">
-                <!-- Aquí se inyectarán las vistas de transferencia, servicios, etc. -->
-            </div>
+            <!-- Panel dinámico interno -->
+            <div id="dynamic-panel" class="dynamic-panel" style="display: none;"></div>
 
-            <br>
-            <button type="button" id="btn-logout" class="btn-danger">Cerrar Sesión</button>
-        </div>
+            <button type="button" id="btn-logout" class="btn-outline-danger">Cerrar Sesión</button>
+        </section>
 
-    </div>
+    </main>
 
     <!-- Enlazamos el archivo de JavaScript -->
     <script src="{% static 'script.js' %}"></script>
