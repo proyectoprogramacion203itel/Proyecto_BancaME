@@ -94,35 +94,54 @@
                 </button>
             </div>
 
-            <!-- Panel dinámico interno -->
+            <!-- Panel dinámico interno (para transferencias, servicios, etc.) -->
             <div id="dynamic-panel" class="dynamic-panel" style="display: none;"></div>
 
-            <!-- Sección de Últimos Movimientos -->
-            <div class="transactions-section">
-                <div class="section-header">
-                    <h4>Últimos Movimientos</h4>
-                    <span class="see-all">Actividad reciente</span>
-                </div>
-                <div id="transactions-list" class="transactions-list">
-                    <div class="transaction-item">
-                        <div class="tx-left">
-                            <div class="tx-icon incoming">↓</div>
-                            <div class="tx-details">
-                                <span class="tx-title">Transferencia Recibida</span>
-                                <span class="tx-date">Hoy, 14:32</span>
-                            </div>
-                        </div>
-                        <span class="tx-amount positive">+$ 45,000.00</span>
+            <!-- Secciones enriquecidas para que no se vea pelado -->
+            <div class="extra-dashboard-content">
+                <!-- Banner de Promociones / Beneficios -->
+                <div class="promo-banner">
+                    <div class="promo-text">
+                        <span class="promo-tag">¡Beneficio Activo!</span>
+                        <h4>30% de reintegro en Supermercados</h4>
+                        <p>Pagando con tu tarjeta de débito los fines de semana.</p>
                     </div>
-                    <div class="transaction-item">
-                        <div class="tx-left">
-                            <div class="tx-icon outgoing">↑</div>
-                            <div class="tx-details">
-                                <span class="tx-title">Spotify Premium</span>
-                                <span class="tx-date">Ayer, 09:15</span>
+                </div>
+
+                <!-- Accesos rápidos secundarios -->
+                <div class="quick-links-grid">
+                    <div class="quick-pill">📊 Inversiones (Plazo Fijo)</div>
+                    <div class="quick-pill">📱 Recargar Celular / S.U.B.E</div>
+                    <div class="quick-pill">📄 Préstamos Preaprobados</div>
+                </div>
+
+                <!-- Últimos Movimientos -->
+                <div class="transactions-section">
+                    <div class="section-header">
+                        <h4>Últimos Movimientos</h4>
+                        <span class="see-all">Actividad reciente</span>
+                    </div>
+                    <div id="transactions-list" class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="tx-left">
+                                <div class="tx-icon incoming">↓</div>
+                                <div class="tx-details">
+                                    <span class="tx-title">Transferencia Recibida</span>
+                                    <span class="tx-date">Hoy, 14:32</span>
+                                </div>
                             </div>
+                            <span class="tx-amount positive">+$ 45,000.00</span>
                         </div>
-                        <span class="tx-amount negative">-$ 3,499.00</span>
+                        <div class="transaction-item">
+                            <div class="tx-left">
+                                <div class="tx-icon outgoing">↑</div>
+                                <div class="tx-details">
+                                    <span class="tx-title">Spotify Premium</span>
+                                    <span class="tx-date">Ayer, 09:15</span>
+                                </div>
+                            </div>
+                            <span class="tx-amount negative">-$ 3,499.00</span>
+                        </div>
                     </div>
                 </div>
             </div>
