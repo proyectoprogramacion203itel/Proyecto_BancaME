@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- INTERACTIVIDAD INTERNA DENTRO DE LA PÁGINA ---
+    // --- INTERACTIVIDAD Y MOVIMIENTOS DINÁMICOS ---
     const dynamicPanel = document.getElementById('dynamic-panel');
     const saldoMontoEl = document.getElementById('saldo-monto');
 
@@ -90,20 +90,43 @@ document.addEventListener('DOMContentLoaded', () => {
         saldoMontoEl.textContent = saldoActual.toLocaleString('es-AR', { minimumFractionDigits: 2 });
     }
 
+    function agregarMovimiento(titulo, monto, esPositivo) {
+        const list = document.getElementById('transactions-list');
+        const item = document.createElement('div');
+        item.className = 'transaction-item';
+        
+        const ahora = new Date();
+        const horaStr = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        item.innerHTML = `
+            <div class="tx-left">
+                <div class="tx-icon ${esPositivo ? 'incoming' : 'outgoing'}">${esPositivo ? '↓' : '↑'}</div>
+                <div class="tx-details">
+                    <span class="tx-title">${titulo}</span>
+                    <span class="tx-date">Hoy, ${horaStr}</span>
+                </div>
+            </div>
+            <span class="tx-amount ${esPositivo ? 'positive' : 'negative'}">${esPositivo ? '+' : '-'}$ ${monto.toLocaleString('es-AR', { minimumFractionDigits: 2 })}</span>
+        `;
+        list.prepend(item);
+    }
+
     // Botón Transferir
     document.getElementById('btn-transferir').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
-            <h3>Nueva Transferencia</h3>
+            <h4>Nueva Transferencia</h4>
             <form id="form-transferencia">
-                <label>CBU / CVU / Alias de Destino:</label>
-                <input type="text" id="trans-cbu" placeholder="ej. bancame.wallet" required>
-                
-                <label>Monto a transferir (ARS):</label>
-                <input type="number" id="trans-monto" placeholder="0.00" min="1" required>
-                
-                <button type="submit" style="background-color: #00e676;">Confirmar Transferencia</button>
-                <button type="button" id="btn-cerrar-panel" style="background-color: #ccc; color: #333;">Cancelar</button>
+                <div class="input-group">
+                    <label>CBU / CVU / Alias de Destino:</label>
+                    <input type="text" id="trans-cbu" placeholder="ej. bancame.wallet" required>
+                </div>
+                <div class="input-group">
+                    <label>Monto a transferir (ARS):</label>
+                    <input type="number" id="trans-monto" placeholder="0.00" min="1" required>
+                </div>
+                <button type="submit" class="btn-primary">Confirmar Transferencia</button>
+                <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cancelar</button>
             </form>
         `;
 
@@ -119,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             saldoActual -= monto;
             actualizarSaldoUI();
+            agregarMovimiento(`Transferencia a ${destino}`, monto, false);
             alert(`¡Transferencia exitosa!\nSe enviaron $${monto.toLocaleString('es-AR')} a ${destino}.`);
             dynamicPanel.style.display = 'none';
         });
@@ -132,23 +156,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-servicios').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
-            <h3>Pago de Servicios</h3>
-            <div class="service-item">
+            <h4>Pago de Servicios</h4>
+            <div class="service-row">
                 <span>Edesur (Luz) - $15.400</span>
-                <button class="btn-pagar-serv" data-monto="15400" data-nombre="Edesur">Pagar</button>
+                <button class="btn-pay-small" data-monto="15400" data-nombre="Edesur">Pagar</button>
             </div>
-            <div class="service-item">
+            <div class="service-row">
                 <span>Metrogas (Gas) - $8.200</span>
-                <button class="btn-pagar-serv" data-monto="8200" data-nombre="Metrogas">Pagar</button>
+                <button class="btn-pay-small" data-monto="8200" data-nombre="Metrogas">Pagar</button>
             </div>
-            <div class="service-item">
+            <div class="service-row">
                 <span>AySA (Agua) - $5.100</span>
-                <button class="btn-pagar-serv" data-monto="5100" data-nombre="AySA">Pagar</button>
+                <button class="btn-pay-small" data-monto="5100" data-nombre="AySA">Pagar</button>
             </div>
-            <button type="button" id="btn-cerrar-panel" style="background-color: #ccc; color: #333; width:100%; margin-top:10px;">Cerrar</button>
+            <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
         `;
 
-        document.querySelectorAll('.btn-pagar-serv').forEach(btn => {
+        document.querySelectorAll('.btn-pay-small').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const monto = parseFloat(e.target.getAttribute('data-monto'));
                 const nombre = e.target.getAttribute('data-nombre');
@@ -160,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 saldoActual -= monto;
                 actualizarSaldoUI();
+                agregarMovimiento(`Pago de ${nombre}`, monto, false);
                 alert(`¡Pago realizado con éxito!\nHas abonado ${nombre} por $${monto.toLocaleString('es-AR')}.`);
                 e.target.parentElement.style.opacity = '0.5';
                 e.target.disabled = true;
@@ -176,14 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-tarjetas').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
-            <h3>Mis Tarjetas Asociadas</h3>
-            <p style="background: #fff; padding: 10px; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 8px;">
-                💳 <strong>Débito Visa:</strong> **** 4589 <span style="color: green; float: right;">Activa</span>
-            </p>
-            <p style="background: #fff; padding: 10px; border-radius: 4px; border: 1px solid #ddd; margin-bottom: 12px;">
-                💳 <strong>Crédito Mastercard:</strong> **** 8812 <span style="color: green; float: right;">Activa</span>
-            </p>
-            <button type="button" id="btn-cerrar-panel" style="background-color: #ccc; color: #333; width:100%;">Cerrar</button>
+            <h4>Mis Tarjetas Asociadas</h4>
+            <div class="card-item">
+                <span>💳 <strong>Débito Visa:</strong> **** 4589</span>
+                <span class="status-active">Activa</span>
+            </div>
+            <div class="card-item">
+                <span>💳 <strong>Crédito Mastercard:</strong> **** 8812</span>
+                <span class="status-active">Activa</span>
+            </div>
+            <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
         `;
 
         document.getElementById('btn-cerrar-panel').addEventListener('click', () => {

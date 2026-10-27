@@ -16,7 +16,7 @@
         <div class="logo">
             <span class="banca">Banca</span><span class="me">ME</span>
         </div>
-        <div class="nav-badge">Banca Digital</div>
+        <div class="nav-badge">Banca Digital 2.0</div>
     </header>
 
     <!-- Contenedor principal -->
@@ -73,7 +73,7 @@
                     <span class="account-type">Cuenta Corriente en ARS</span>
                     <h3>Mi Dinero</h3>
                 </div>
-                <div class="secure-badge">🔒 Seguro</div>
+                <div class="secure-badge">🔒 Encriptado</div>
             </div>
 
             <div class="balance-card">
@@ -96,6 +96,36 @@
 
             <!-- Panel dinámico interno -->
             <div id="dynamic-panel" class="dynamic-panel" style="display: none;"></div>
+
+            <!-- Sección de Últimos Movimientos -->
+            <div class="transactions-section">
+                <div class="section-header">
+                    <h4>Últimos Movimientos</h4>
+                    <span class="see-all">Actividad reciente</span>
+                </div>
+                <div id="transactions-list" class="transactions-list">
+                    <div class="transaction-item">
+                        <div class="tx-left">
+                            <div class="tx-icon incoming">↓</div>
+                            <div class="tx-details">
+                                <span class="tx-title">Transferencia Recibida</span>
+                                <span class="tx-date">Hoy, 14:32</span>
+                            </div>
+                        </div>
+                        <span class="tx-amount positive">+$ 45,000.00</span>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="tx-left">
+                            <div class="tx-icon outgoing">↑</div>
+                            <div class="tx-details">
+                                <span class="tx-title">Spotify Premium</span>
+                                <span class="tx-date">Ayer, 09:15</span>
+                            </div>
+                        </div>
+                        <span class="tx-amount negative">-$ 3,499.00</span>
+                    </div>
+                </div>
+            </div>
 
             <button type="button" id="btn-logout" class="btn-outline-danger">Cerrar Sesión</button>
         </section>
