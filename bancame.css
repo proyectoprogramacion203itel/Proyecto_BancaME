@@ -32,8 +32,8 @@ body {
 }
 
 .main-container {
-    max-width: 420px;
-    margin: 60px auto;
+    max-width: 460px;
+    margin: 50px auto;
     padding: 30px;
     background: #ffffff;
     border-radius: 8px;
@@ -60,7 +60,8 @@ label {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid #ccc;
@@ -70,13 +71,12 @@ input[type="password"] {
     transition: border-color 0.2s;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+input:focus {
     border-color: #0088cc;
 }
 
 button {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 12px;
     background-color: #00e676;
     color: #ffffff;
@@ -98,6 +98,15 @@ p {
     font-size: 14px;
 }
 
+.saldo-box {
+    background: #e1f5fe;
+    padding: 10px;
+    border-radius: 6px;
+    color: #01579b;
+    font-size: 16px;
+    margin: 15px 0;
+}
+
 a {
     color: #0088cc;
     text-decoration: none;
@@ -116,9 +125,54 @@ a:hover {
 
 .actions button {
     flex: 1;
+    margin-top: 0;
     background-color: #0088cc;
+    font-size: 14px;
 }
 
 .actions button:hover {
     background-color: #006699;
+}
+
+.btn-danger {
+    background-color: #d9534f !important;
+    width: 100%;
+}
+.btn-danger:hover {
+    background-color: #c9302c !important;
+}
+
+/* Panel dinámico interno */
+.dynamic-panel {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+.dynamic-panel h3 {
+    font-size: 16px;
+    color: #0088cc;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.service-item button {
+    margin-top: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    background-color: #0088cc;
 }

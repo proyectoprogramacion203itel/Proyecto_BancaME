@@ -52,15 +52,21 @@
         <div id="dashboard-section" style="display: none;">
             <h2>Bienvenido a tu cuenta</h2>
             <p><strong>Cuenta Corriente:</strong> ES91 2100 0456 7812 3456 7890</p>
-            <p><strong>Saldo Disponible:</strong> $ 1,250,450.00 ARS</p>
+            <p class="saldo-box"><strong>Saldo Disponible:</strong> $ <span id="saldo-monto">1,250,450.00</span> ARS</p>
             
             <div class="actions">
                 <button type="button" id="btn-transferir">Transferir</button>
                 <button type="button" id="btn-servicios">Servicios</button>
                 <button type="button" id="btn-tarjetas">Tarjetas</button>
             </div>
+
+            <!-- Contenedor interno para mostrar operaciones dentro de la página -->
+            <div id="dynamic-panel" class="dynamic-panel" style="display: none;">
+                <!-- Aquí se inyectarán las vistas de transferencia, servicios, etc. -->
+            </div>
+
             <br>
-            <button type="button" id="btn-logout" style="background-color: #d9534f; color: white; width: 100%;">Cerrar Sesión</button>
+            <button type="button" id="btn-logout" class="btn-danger">Cerrar Sesión</button>
         </div>
 
     </div>
