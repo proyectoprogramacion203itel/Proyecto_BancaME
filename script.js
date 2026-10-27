@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const showRegister = document.getElementById('show-register');
     const showLogin = document.getElementById('show-login');
 
-    // Cambiar entre Login y Registro
     if (showRegister && showLogin) {
         showRegister.addEventListener('click', (e) => {
             e.preventDefault();
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Proceso de Registro
+    // Registro
     const formRegister = document.getElementById('form-register');
     if (formRegister) {
         formRegister.addEventListener('submit', async (e) => {
@@ -39,11 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ usuario, password })
                 });
 
+                const textData = await response.text();
+                
                 if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
+                    // Muestra el error exacto que devuelve Django en pantalla
+                    alert('Error del servidor Django:\n' + textData.substring(0, 300));
+                    return;
                 }
 
-                const data = await response.json();
+                const data = JSON.parse(textData);
                 alert(data.message);
                 if (data.success) {
                     registerSection.style.display = 'none';
@@ -52,12 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error(error);
-                alert('Error de conexión con el servidor.');
+                alert('Fiebre de red o error al parsear JSON.');
             }
         });
     }
 
-    // Proceso de Login
+    // Login
     const formLogin = document.getElementById('form-login');
     if (formLogin) {
         formLogin.addEventListener('submit', async (e) => {
@@ -75,12 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ usuario, password })
                 });
 
+                const textData = await response.text();
+
                 if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
+                    alert('Error del servidor Django:\n' + textData.substring(0, 300));
+                    return;
                 }
 
-                const data = await response.json();
-
+                const data = JSON.parse(textData);
                 if (data.success) {
                     alert('¡Inicio de sesión exitoso!');
                     loginSection.style.display = 'none';
@@ -91,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error(error);
-                alert('Error de conexión con el servidor.');
+                alert('Fiebre de red o error al parsear JSON.');
             }
         });
     }
