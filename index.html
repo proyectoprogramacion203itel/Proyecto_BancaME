@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BancaME — Tu dinero, a tu manera</title>
     <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
-    <link rel="stylesheet" href="{% static 'bancame.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'bancame.css' %}?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación con fondo blanco y alto contraste -->
+    <!-- Barra de navegación con el azul original y contenedor de alto contraste para el logo -->
     <header class="navbar">
-        <div class="logo-container">
+        <div class="logo-container-bg">
             <img src="{% static 'logo.png' %}" alt="BancaME Logo" class="brand-logo">
         </div>
     </header>
@@ -22,7 +22,7 @@
     <!-- Contenedor principal -->
     <main class="main-wrapper">
         
-        <!-- Sección de Login (Diseño Split de 2 columnas) -->
+        <!-- Sección de Login (Diseño Split Amplio para que la imagen no se corte) -->
         <section id="login-section" class="auth-card-container">
             <div class="auth-image-side">
                 <img src="{% static 'mascot.png' %}" alt="Trae tu sueldo a BancaME" class="full-mascot-img">

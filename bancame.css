@@ -26,27 +26,31 @@ body {
     flex-direction: column;
 }
 
-/* Navbar de Alto Contraste (Fondo Blanco, Estilo Fintech) */
+/* Navbar con el Azul Original y Cápsula Blanca para el Logo */
 .navbar {
-    background-color: #ffffff;
+    background-color: var(--primary);
     padding: 0 36px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    height: 70px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    height: 72px;
     width: 100%;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
-.logo-container {
+.logo-container-bg {
+    background: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .brand-logo {
-    max-height: 38px;
+    height: 32px;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 /* Layout Container */
@@ -58,34 +62,36 @@ body {
     padding: 32px 16px;
 }
 
-/* Tarjeta Auth Split (Dos Columnas) */
+/* Tarjeta Auth Split (Dos Columnas con Imagen Completa y sin recortes) */
 .auth-card-container {
     display: flex;
     width: 100%;
-    max-width: 860px;
+    max-width: 900px;
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
     border: 1px solid var(--border-color);
     animation: fadeIn 0.3s ease-in-out;
 }
 
 .auth-image-side {
-    flex: 1;
+    flex: 1.1;
     background: #0f172a;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
 }
 
 .full-mascot-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Muestra toda la imagen completa sin recortar los costados */
+    background-color: #0b1120;
     display: block;
-    min-height: 420px;
+    min-height: 450px;
 }
 
 .auth-form-side {
@@ -288,12 +294,13 @@ input:focus, select:focus {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    background: #0f172a;
 }
 
 .mascot-img {
     width: 100%;
-    max-height: 140px;
-    object-fit: cover;
+    max-height: 200px;
+    object-fit: contain;
     display: block;
 }
 
