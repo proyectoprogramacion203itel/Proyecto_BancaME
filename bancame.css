@@ -26,7 +26,7 @@ body {
     flex-direction: column;
 }
 
-/* Navbar con el Azul Original y Cápsula Blanca para el Logo */
+/* Navbar */
 .navbar {
     background-color: var(--primary);
     padding: 0 36px;
@@ -62,7 +62,7 @@ body {
     padding: 32px 16px;
 }
 
-/* Tarjeta Auth Split (Dos Columnas con Imagen Completa y sin recortes) */
+/* Tarjeta Auth Split */
 .auth-card-container {
     display: flex;
     width: 100%;
@@ -88,7 +88,7 @@ body {
 .full-mascot-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Muestra toda la imagen completa sin recortar los costados */
+    object-fit: contain;
     background-color: #0b1120;
     display: block;
     min-height: 450px;
@@ -256,10 +256,32 @@ input:focus, select:focus {
     color: #ffffff;
 }
 
+.account-cbu-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .account-number {
     font-size: 11px;
     color: #cbd5e1;
     font-family: monospace;
+}
+
+.btn-copy-cbu {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-copy-cbu:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .actions-grid {
@@ -288,21 +310,72 @@ input:focus, select:focus {
     background: #f1f5f9;
 }
 
-.mascot-banner-card {
-    width: 100%;
-    margin-bottom: 14px;
-    border-radius: 12px;
-    overflow: hidden;
+/* Analytics Card (Widget Gastos) */
+.analytics-card {
+    background: #f8fafc;
     border: 1px solid var(--border-color);
-    background: #0f172a;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
 }
 
-.mascot-img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    display: block;
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
+
+.analytics-header h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.analytics-header span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--danger);
+}
+
+.category-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.bar-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.bar-bg {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.fill-services { background: #ef4444; }
+.fill-transfers { background: #3b82f6; }
+.fill-others { background: #f59e0b; }
 
 .quick-links-grid {
     display: flex;
@@ -411,4 +484,39 @@ input:focus, select:focus {
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 14px;
+}
+
+/* Toast Notification Styles */
+.toast {
+    visibility: hidden;
+    min-width: 240px;
+    background-color: var(--primary);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 12px 20px;
+    position: fixed;
+    z-index: 1000;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.3s, fadeout 0.3s 2.5s;
+}
+
+@keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { bottom: 30px; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
 }

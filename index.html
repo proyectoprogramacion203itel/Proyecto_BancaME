@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BancaME — Tu dinero, a tu manera</title>
     <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
-    <link rel="stylesheet" href="{% static 'bancame.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'bancame.css' %}?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación con el azul original y contenedor de alto contraste para el logo -->
+    <!-- Barra de navegación con el azul original y cápsula blanca para el logo -->
     <header class="navbar">
         <div class="logo-container-bg">
             <img src="{% static 'logo.png' %}" alt="BancaME Logo" class="brand-logo">
@@ -22,7 +22,7 @@
     <!-- Contenedor principal -->
     <main class="main-wrapper">
         
-        <!-- Sección de Login (Diseño Split Amplio para que la imagen no se corte) -->
+        <!-- Sección de Login (Diseño Split de 2 columnas) -->
         <section id="login-section" class="auth-card-container">
             <div class="auth-image-side">
                 <img src="{% static 'mascot.png' %}" alt="Trae tu sueldo a BancaME" class="full-mascot-img">
@@ -84,7 +84,10 @@
             <div class="balance-card">
                 <span class="balance-label">Saldo Disponible</span>
                 <div class="balance-amount">$ <span id="saldo-monto">1,250,450.00</span></div>
-                <div class="account-number">CBU: ES91 2100 0456 7812 3456 7890</div>
+                <div class="account-cbu-wrapper">
+                    <span class="account-number" id="cbu-texto">CBU: ES91 2100 0456 7812 3456 7890</span>
+                    <button type="button" class="btn-copy-cbu" id="btn-copy-cbu" title="Copiar CBU">📋 Copiar</button>
+                </div>
             </div>
             
             <div class="actions-grid">
@@ -102,12 +105,39 @@
             <!-- Panel dinámico interno -->
             <div id="dynamic-panel" class="dynamic-panel" style="display: none;"></div>
 
+            <!-- Resumen de Gastos y Categorías (NUEVO) -->
+            <div class="analytics-card">
+                <div class="analytics-header">
+                    <h4>Análisis de Gastos del Mes</h4>
+                    <span id="total-gastos-label">$28,700</span>
+                </div>
+                <div class="category-bars">
+                    <div class="bar-group">
+                        <div class="bar-info">
+                            <span>Servicios y Impuestos</span>
+                            <span id="pct-servicios">55%</span>
+                        </div>
+                        <div class="bar-bg"><div class="bar-fill fill-services" id="bar-servicios" style="width: 55%;"></div></div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-info">
+                            <span>Transferencias Salientes</span>
+                            <span id="pct-transferencias">33%</span>
+                        </div>
+                        <div class="bar-bg"><div class="bar-fill fill-transfers" id="bar-transferencias" style="width: 33%;"></div></div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-info">
+                            <span>Suscripciones / Otros</span>
+                            <span id="pct-otros">12%</span>
+                        </div>
+                        <div class="bar-bg"><div class="bar-fill fill-others" id="bar-otros" style="width: 12%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Secciones enriquecidas -->
             <div class="extra-dashboard-content">
-                <div class="mascot-banner-card">
-                    <img src="{% static 'mascot.png' %}" alt="Trae tu sueldo a BancaME" class="mascot-img">
-                </div>
-
                 <div class="quick-links-grid">
                     <button type="button" class="quick-pill" id="btn-plazo-fijo">📊 Plazo Fijo</button>
                     <button type="button" class="quick-pill" id="btn-conversor">💱 Conversor USD</button>
@@ -148,6 +178,9 @@
         </section>
 
     </main>
+
+    <!-- Notificación Toast Flotante -->
+    <div id="toast-notification" class="toast">¡CBU copiado al portapapeles!</div>
 
     <script src="{% static 'script.js' %}"></script>
 </body>
