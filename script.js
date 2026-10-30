@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Botón Plazo Fijo (NUEVO)
+    // 4. Botón Plazo Fijo
     document.getElementById('btn-plazo-fijo').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Botón Conversor USD (NUEVO)
+    // 5. Botón Conversor USD
     document.getElementById('btn-conversor').addEventListener('click', () => {
         dynamicPanel.style.display = 'block';
         dynamicPanel.innerHTML = `
@@ -269,12 +269,34 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
         `;
 
-        const cotizacionDolar = 1150.00; // Cotización simulada
+        const cotizacionDolar = 1150.00;
         document.getElementById('conv-ars').addEventListener('input', (e) => {
             const ars = parseFloat(e.target.value) || 0;
             const usd = ars / cotizacionDolar;
             document.getElementById('resultado-conversor').textContent = `Equivalente: $${usd.toFixed(2)} USD (Ref: $${cotizacionDolar})`;
         });
+
+        document.getElementById('btn-cerrar-panel').addEventListener('click', () => {
+            dynamicPanel.style.display = 'none';
+        });
+    });
+
+    // 6. Botón Seguridad Biométrica (NUEVO)
+    document.getElementById('btn-seguridad').addEventListener('click', () => {
+        dynamicPanel.style.display = 'block';
+        dynamicPanel.innerHTML = `
+            <h4>Seguridad Biométrica y Accesos</h4>
+            <div class="card-item">
+                <span>👤 <strong>Reconocimiento Facial (FaceID):</strong></span>
+                <span style="color: #059669; font-weight:600; font-size:11px;">Habilitado</span>
+            </div>
+            <div class="card-item">
+                <span>👆 <strong>Autenticación por Huella Dactilar:</strong></span>
+                <span style="color: #059669; font-weight:600; font-size:11px;">Habilitado</span>
+            </div>
+            <p style="font-size: 11px; color: #64748b; margin-top: 8px; text-align:center;">Tus datos biométricos están protegidos bajo protocolos bancarios de grado militar.</p>
+            <button type="button" id="btn-cerrar-panel" class="btn-secondary">Cerrar</button>
+        `;
 
         document.getElementById('btn-cerrar-panel').addEventListener('click', () => {
             dynamicPanel.style.display = 'none';

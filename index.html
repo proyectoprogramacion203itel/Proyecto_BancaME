@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BancaME — Tu dinero, a tu manera</title>
-    <link rel="icon" type="image/png" href="Diseño web Muestra 2026 -  Iván Fenández, Minacian, Palacios, Rodríguez Gómez.png">
+    <!-- Favicon personalizado -->
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    
     <link rel="stylesheet" href="{% static 'bancame.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,57 +16,79 @@
 <body>
     <!-- Barra de navegación -->
     <header class="navbar">
-        <div class="logo">
-            <span class="banca">Banca</span><span class="me">ME</span>
+        <div class="logo-container">
+            <img src="{% static 'logo.png' %}" alt="BancaME Logo" class="brand-logo-img">
         </div>
-        <div class="nav-badge">Banca Digital 2.0</div>
+        <div class="nav-status">
+            <span class="status-dot"></span> Sistemas Operativos
+        </div>
     </header>
 
     <!-- Contenedor principal -->
     <main class="main-wrapper">
         
-        <!-- Sección de Login -->
-        <section id="login-section" class="card-box">
-            <div class="card-header-text">
-                <h2>¡Hola de nuevo!</h2>
-                <p class="subtitle">Ingresa a tu cuenta para gestionar tus finanzas</p>
+        <!-- Sección de Login con la Mascota -->
+        <section id="login-section" class="auth-layout">
+            <div class="promo-hero-card">
+                <img src="{% static 'mascot.png' %}" alt="BancaME Mascota" class="mascot-img">
+                <div class="promo-hero-text">
+                    <h2>Traje tu sueldo a BancaME</h2>
+                    <p>Manten tu cuenta y tarjetas bonificadas siempre.</p>
+                </div>
             </div>
-            <form id="form-login">
-                <div class="input-group">
-                    <label for="usuario-login">Usuario</label>
-                    <input type="text" id="usuario-login" placeholder="Tu nombre de usuario" required autocomplete="username">
+
+            <div class="card-box">
+                <div class="card-header-text">
+                    <h2>¡Hola de nuevo!</h2>
+                    <p class="subtitle">Ingresa a tu cuenta para gestionar tus finanzas</p>
                 </div>
-                
-                <div class="input-group">
-                    <label for="password-login">Contraseña</label>
-                    <input type="password" id="password-login" placeholder="••••••••" required autocomplete="current-password">
-                </div>
-                
-                <button type="submit" class="btn-primary">Ingresar</button>
-            </form>
-            <p class="footer-link">¿No tienes cuenta? <a href="#" id="show-register">Regístrate gratis</a></p>
+                <form id="form-login">
+                    <div class="input-group">
+                        <label for="usuario-login">Usuario</label>
+                        <input type="text" id="usuario-login" placeholder="Tu nombre de usuario" required autocomplete="username">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password-login">Contraseña</label>
+                        <input type="password" id="password-login" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Ingresar</button>
+                </form>
+                <p class="footer-link">¿No tienes cuenta? <a href="#" id="show-register">Regístrate gratis</a></p>
+            </div>
         </section>
 
         <!-- Sección de Registro (Oculta por defecto) -->
-        <section id="register-section" class="card-box" style="display: none;">
-            <div class="card-header-text">
-                <h2>Crea tu cuenta</h2>
-                <p class="subtitle">Únete a BancaME en segundos</p>
+        <section id="register-section" class="auth-layout" style="display: none;">
+            <div class="promo-hero-card">
+                <img src="{% static 'mascot.png' %}" alt="BancaME Mascota" class="mascot-img">
+                <div class="promo-hero-text">
+                    <h2>Únete al futuro financiero</h2>
+                    <p>Tu cuenta 100% digital y sin comisiones ocultas.</p>
+                </div>
             </div>
-            <form id="form-register">
-                <div class="input-group">
-                    <label for="usuario-reg">Nombre de Usuario</label>
-                    <input type="text" id="usuario-reg" placeholder="Elige un usuario único" required>
+
+            <div class="card-box">
+                <div class="card-header-text">
+                    <h2>Crea tu cuenta</h2>
+                    <p class="subtitle">Únete a BancaME en segundos</p>
                 </div>
-                
-                <div class="input-group">
-                    <label for="password-reg">Contraseña</label>
-                    <input type="password" id="password-reg" placeholder="Mínimo 6 caracteres" required>
-                </div>
-                
-                <button type="submit" class="btn-primary">Crear Cuenta</button>
-            </form>
-            <p class="footer-link">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
+                <form id="form-register">
+                    <div class="input-group">
+                        <label for="usuario-reg">Nombre de Usuario</label>
+                        <input type="text" id="usuario-reg" placeholder="Elige un usuario único" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password-reg">Contraseña</label>
+                        <input type="password" id="password-reg" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Crear Cuenta</button>
+                </form>
+                <p class="footer-link">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a></p>
+            </div>
         </section>
 
         <!-- Sección de Dashboard / Cuenta (Oculta hasta iniciar sesión) -->
@@ -74,7 +98,7 @@
                     <span class="account-type">Cuenta Corriente en ARS</span>
                     <h3>Mi Dinero</h3>
                 </div>
-                <div class="secure-badge">🔒 Encriptado</div>
+                <div class="secure-badge">🔒 Encriptado AES-256</div>
             </div>
 
             <div class="balance-card">
@@ -98,22 +122,23 @@
             <!-- Panel dinámico interno -->
             <div id="dynamic-panel" class="dynamic-panel" style="display: none;"></div>
 
-            <!-- Secciones enriquecidas de la principal -->
+            <!-- Secciones enriquecidas con la mascota -->
             <div class="extra-dashboard-content">
-                <!-- Banner de Promociones / Beneficios -->
-                <div class="promo-banner">
-                    <div class="promo-text">
-                        <span class="promo-tag">¡Beneficio Activo!</span>
-                        <h4>30% de reintegro en Supermercados</h4>
-                        <p>Pagando con tu tarjeta de débito los fines de semana.</p>
+                <!-- Tarjeta de bienvenida de la mascota -->
+                <div class="dashboard-mascot-banner">
+                    <div class="mascot-info">
+                        <span class="promo-tag">Sueldo Bonificado</span>
+                        <h4>¡Hola! Tus beneficios están activos</h4>
+                        <p>30% de reintegro en supermercados y servicios este fin de semana.</p>
                     </div>
+                    <img src="{% static 'mascot.png' %}" alt="Mascota" class="mascot-avatar-small">
                 </div>
 
                 <!-- Accesos rápidos avanzados -->
                 <div class="quick-links-grid">
                     <button type="button" class="quick-pill" id="btn-plazo-fijo">📊 Plazo Fijo</button>
                     <button type="button" class="quick-pill" id="btn-conversor">💱 Conversor USD</button>
-                    <div class="quick-pill">📄 Préstamos</div>
+                    <button type="button" class="quick-pill" id="btn-seguridad">🛡️ Seguridad Biométrica</button>
                 </div>
 
                 <!-- Últimos Movimientos -->

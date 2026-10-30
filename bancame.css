@@ -29,34 +29,33 @@ body {
 /* Navbar */
 .navbar {
     background-color: var(--primary);
-    padding: 16px 32px;
+    padding: 14px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+.brand-logo-img {
+    height: 36px;
+    object-fit: contain;
 }
 
-.logo .banca {
-    color: #ffffff;
-}
-
-.logo .me {
-    color: var(--accent);
-}
-
-.nav-badge {
-    background: rgba(255, 255, 255, 0.1);
+.nav-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: #cbd5e1;
     font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 20px;
     font-weight: 500;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
 }
 
 /* Layout Container */
@@ -68,10 +67,67 @@ body {
     padding: 24px;
 }
 
+/* Auth Layout con Mascota Lateral */
+.auth-layout {
+    display: flex;
+    gap: 24px;
+    max-width: 860px;
+    width: 100%;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.promo-hero-card {
+    flex: 1;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.mascot-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.promo-hero-text {
+    padding: 24px;
+}
+
+.promo-hero-text h2 {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.promo-hero-text p {
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.4;
+    text-align: left;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .auth-layout {
+        flex-direction: column;
+    }
+    .promo-hero-card {
+        max-width: 420px;
+        width: 100%;
+    }
+}
+
 /* Cards */
 .card-box {
     width: 100%;
-    max-width: 440px;
+    max-width: 420px;
     background: var(--card-bg);
     border-radius: 16px;
     padding: 32px;
@@ -86,7 +142,7 @@ body {
 }
 
 .card-header-text {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -97,14 +153,14 @@ h2 {
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
     margin-top: 4px;
 }
 
 /* Forms */
 .input-group {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 label {
@@ -155,8 +211,8 @@ input:focus {
 
 .footer-link {
     text-align: center;
-    margin-top: 24px;
-    font-size: 14px;
+    margin-top: 20px;
+    font-size: 13px;
     color: var(--text-muted);
 }
 
@@ -172,7 +228,7 @@ input:focus {
 
 /* Dashboard Styling */
 .dashboard-card {
-    max-width: 480px;
+    max-width: 520px;
 }
 
 .dash-top {
@@ -269,13 +325,17 @@ input:focus {
     transform: translateY(-1px);
 }
 
-/* Enriched Dashboard Extras */
-.promo-banner {
+/* Dashboard Mascot Banner */
+.dashboard-mascot-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
     border: 1px solid #bbf7d0;
     padding: 14px 16px;
     border-radius: 12px;
     margin-bottom: 14px;
+    gap: 12px;
 }
 
 .promo-tag {
@@ -288,18 +348,26 @@ input:focus {
     border-radius: 4px;
 }
 
-.promo-banner h4 {
+.mascot-info h4 {
     font-size: 14px;
     color: #14532d;
-    margin: 6px 0 2px 0;
+    margin: 4px 0 2px 0;
     font-weight: 700;
 }
 
-.promo-banner p {
+.mascot-info p {
     font-size: 12px;
     color: #166534;
     text-align: left;
     margin: 0;
+}
+
+.mascot-avatar-small {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #059669;
 }
 
 .quick-links-grid {
@@ -312,7 +380,7 @@ input:focus {
 
 .quick-pill {
     background: #f1f5f9;
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     padding: 8px 12px;
     border-radius: 20px;
     font-size: 12px;
